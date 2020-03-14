@@ -3,7 +3,7 @@
 namespace Ecoflow\Shop\Repositories;
 
 use Ecoflow\Shop\Models\Category;
-use Ecoflow\Ecoflow\Repositories\BaseRepository;
+use Ecoflow\Core\Repositories\BaseRepository;
 
 class CategoryRepository extends BaseRepository
 {

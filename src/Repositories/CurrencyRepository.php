@@ -3,7 +3,7 @@
 namespace Ecoflow\Shop\Repositories;
 
 use Ecoflow\Shop\Models\Currency;
-use Ecoflow\Ecoflow\Repositories\BaseRepository;
+use Ecoflow\Core\Repositories\BaseRepository;
 
 class CurrencyRepository extends BaseRepository
 {
