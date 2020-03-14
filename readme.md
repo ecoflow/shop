@@ -3,7 +3,7 @@ The shop module for ecoflow.
 
 ## Modules
 
-### Shop
+### Shop
 ### Category
 ### Product
 ### Currency
