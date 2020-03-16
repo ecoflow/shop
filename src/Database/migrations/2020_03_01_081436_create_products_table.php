@@ -21,8 +21,7 @@ class CreateProductsTable extends Migration
             $table->integer('qt')->nullable();
             $table->boolean('in_stock')->nullable();
 
-            $table->unsignedBigInteger('currency_id')->nullable();
-            $table->foreign('currency_id')->references('id')->on('currencies');
+            $table->foreignId('currency_id')->constrained();
 
             $table->unsignedBigInteger('type_id')->nullable();
             $table->foreign('type_id')->references('id')->on('product_types');

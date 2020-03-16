@@ -15,13 +15,8 @@ class CreateProductShopTable extends Migration
     {
         Schema::create('product_shop', function (Blueprint $table) {
             $table->id();
-
-            $table->unsignedBigInteger('product_id');
-            $table->unsignedBigInteger('shop_id');
-
-            $table->foreign('product_id')->references('id')->on('products');
-            $table->foreign('shop_id')->references('id')->on('shops');
-
+            $table->foreignId('product_id')->constrained();
+            $table->foreignId('shop_id')->constrained();
             $table->timestamps();
         });
     }

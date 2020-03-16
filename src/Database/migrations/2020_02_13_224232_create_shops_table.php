@@ -17,9 +17,7 @@ class CreateShopsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('desc')->nullable();
-            $table->unsignedBigInteger('currency_id')->nullable();
-            $table->foreign('currency_id')->references('id')->on('currencies');
-
+            $table->foreignId('currency_id')->constrained();
             $table->timestamps();
             $table->softDeletes();
         });
