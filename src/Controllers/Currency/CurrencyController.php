@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecoflow\Shop\Controllers\Shop;
+namespace Ecoflow\Shop\Controllers\Currency;
 
 use App\Http\Controllers\Controller;
 use Ecoflow\Shop\Models\Currency;

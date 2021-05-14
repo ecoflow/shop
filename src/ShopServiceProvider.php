@@ -8,7 +8,9 @@ class ShopServiceProvider extends ServiceProvider
 {
     public function register()
     {
-        # code...
+        $this->mergeConfigFrom(
+            __DIR__.'/config/shop.php', 'shop'
+        );
     }
 
     public function boot()

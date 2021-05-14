@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecoflow\Shop\Controllers\Shop;
+namespace Ecoflow\Shop\Controllers\Category;
 
 use Ecoflow\Shop\Models\Category;
 use App\Http\Controllers\Controller;
