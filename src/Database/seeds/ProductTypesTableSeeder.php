@@ -1,6 +1,6 @@
 <?php
 
-namespace Ecoflow\Shop\Database\Seeds;
+// namespace Ecoflow\Shop\Database\Seeds;
 
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
