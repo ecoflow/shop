@@ -1,36 +1,13 @@
 <?php
 
-Route::group(['namespace' => 'Ecoflow\Shop\Controllers'], function () {
+use Illuminate\Support\Facades\Route;
 
-    /** Currency Routes */
-    Route::group(['namespace' => 'Currency', 'prefix' => 'currency'], function () {
-        Route::get('all', 'CurrencyController@index');
-        Route::get('/:match', 'CurrencyController@find');
-        Route::post('create', 'CurrencyController@create');
-        Route::delete('delete/:id', 'CurrencyController@delete');
-    });
+use Ecoflow\Shop\Controllers\Shop\ShopController;
+use Ecoflow\Shop\Controllers\Product\ProductController;
+use Ecoflow\Shop\Controllers\Category\CategoryController;
+use Ecoflow\Shop\Controllers\Currency\CurrencyController;
 
-    /** Shop Routes */
-    Route::group(['namespace' => 'Shop', 'prefix' => 'shop'], function () {
-        Route::get('all', 'ShopController@index');
-        Route::get('/:match', 'ShopController@find');
-        Route::post('create', 'ShopController@create');
-        Route::delete('delete/:id', 'ShopController@delete');
-    });
-
-    /** Category Routes */
-    Route::group(['namespace' => 'Category', 'prefix' => 'category'], function () {
-        Route::get('all', 'CategoryController@index');
-        Route::get('/:match', 'CategoryController@find');
-        Route::post('create', 'CategoryController@create');
-        Route::delete('delete/:id', 'CategoryController@delete');
-    });
-
-    /** Product Routes */
-    Route::group(['namespace' => 'Product', 'prefix' => 'product'], function () {
-        Route::get('all', 'ProductController@index');
-        Route::get('/:match', 'ProductController@find');
-        Route::post('create', 'ProductController@create');
-        Route::delete('delete/:id', 'ProductController@delete');
-    });
-});
+Route::resource('shop', ShopController::class);
+Route::resource('currency', CurrencyController::class);
+Route::resource('category', CategoryController::class);
+Route::resource('product', ProductController::class);

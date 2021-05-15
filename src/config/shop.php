@@ -1,5 +1,5 @@
 <?php
 
     return [
-        "multishops" => true
+        "multiple" => false
     ];

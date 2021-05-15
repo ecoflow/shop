@@ -14,21 +14,22 @@ class CreateProductsTable extends Migration
     public function up()
     {
         Schema::create('products', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->string('name', 191);
-            $table->text('desc')->nullable();
-            $table->float('price', 8, 2)->nullable();
+            $table->mediumText('desc')->nullable();
+
+            $table->float('price', 8, 3)->nullable();
+            $table->integer('discount')->nullable();
+
             $table->integer('qt')->nullable();
-            $table->boolean('in_stock')->nullable();
+            $table->boolean('hot')->default(0);
 
-            $table->foreignId('currency_id')->constrained();
+            $table->json('options')->nullable();
 
-            $table->unsignedBigInteger('type_id')->nullable();
-            $table->foreign('type_id')->references('id')->on('product_types');
+            $table->foreignId('type_id')->nullable();
+            $table->foreignId('unit_id')->nullable();
 
-            $table->unsignedBigInteger('unit_id')->nullable();
-            $table->foreign('unit_id')->references('id')->on('product_units');
-
+            $table->boolean('active')->default(0);
             $table->timestamps();
             $table->softDeletes();
         });

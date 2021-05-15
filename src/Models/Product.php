@@ -14,7 +14,14 @@ class Product extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'desc', 'price', 'img_path', 'in_stock', 'qt'];
+    protected $fillable = ['name', 'desc', 'price', 'discount', 'qt', 'hot', 'type_id', 'unit_id', 'active'];
+
+    /**
+     * With relations
+     *
+     * @var array
+     */
+    protected $with = ['categories', 'shops'];
 
     /**
      * Belongs to many Category
@@ -33,16 +40,7 @@ class Product extends Model
      */
     public function shops()
     {
-        return $this->belongsToMany(Product::class);
+        return $this->belongsToMany(Shop::class);
     }
 
-    /**
-     * Currency
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
-     */
-    public function currency()
-    {
-        return $this->belongsTo(Currency::class);
-    }
 }

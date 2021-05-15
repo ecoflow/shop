@@ -14,7 +14,7 @@ class Shop extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'desc', 'address', 'city', 'zipcode', 'country'];
+    protected $fillable = ['name', 'desc'];
 
     /**
      * Belongs to many Product

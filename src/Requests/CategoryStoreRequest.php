@@ -4,7 +4,7 @@ namespace Ecoflow\Shop\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ShopStoreRequest extends FormRequest
+class CategoryStoreRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

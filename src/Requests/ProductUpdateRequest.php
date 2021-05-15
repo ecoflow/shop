@@ -4,7 +4,7 @@ namespace Ecoflow\Shop\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ShopUpdateRequest extends FormRequest
+class ProductUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,15 @@ class ShopUpdateRequest extends FormRequest
     {
         return [
             'name' => 'sometimes|nullable|min:3|max:191',
-            'desc' => 'sometimes|nullable|min:3|max:191',
+            'desc' => 'sometimes|nullable',
+            'price' => 'sometimes|nullable',
+            'discount' => 'sometimes|nullable',
+            'qt' => 'sometimes|nullable',
+            'hot' => 'sometimes|nullable',
+            'options' => 'sometimes|nullable',
+            'type_id' => 'sometimes|nullable',
+            'unit_id' => 'sometimes|nullable',
+            'active' => 'sometimes|nullable',
         ];
     }
 }

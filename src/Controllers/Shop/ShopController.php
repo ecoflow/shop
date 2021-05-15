@@ -4,8 +4,9 @@ namespace Ecoflow\Shop\Controllers\Shop;
 
 use Ecoflow\Shop\Models\Shop;
 use App\Http\Controllers\Controller;
-use Ecoflow\Shop\Repositories\ShopRepository;
 use Ecoflow\Shop\Requests\ShopStoreRequest;
+use Ecoflow\Shop\Requests\ShopUpdateRequest;
+use Ecoflow\Shop\Repositories\ShopRepository;
 
 class ShopController extends Controller
 {
@@ -14,7 +15,7 @@ class ShopController extends Controller
      *
      * @var ShopRepository
      */
-    protected ShopRepository $shop;
+    protected ShopRepository $repository;
 
     /**
      * __construct
@@ -23,49 +24,76 @@ class ShopController extends Controller
      */
     public function __construct()
     {
-        $this->shop = new ShopRepository();
+        $this->repository = new ShopRepository();
     }
 
     /**
-     * Get all Shop records
+     * Return all records
      *
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
-        return $this->shop->all();
+        return response()->json([
+            'success' => true,
+            'data' => $this->repository->all(),
+        ]);
     }
 
     /**
-     * Get specific Shop records
+     * Show a record
      *
-     * @param mixed $match
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($match): Shop
+    public function show($id): \Illuminate\Http\JsonResponse
     {
-        return $this->shop->find($match);
+        return response()->json([
+            'success' => true,
+            'data' => $this->repository->find($id),
+        ]);
     }
 
     /**
-     * Create a Shop record
+     * create
      *
-     * @param ShopStoreRequest $request
-     * @return Shop
+     * @param array $attributes
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create(ShopStoreRequest $request): Shop
+    public function store(ShopStoreRequest $request): \Illuminate\Http\JsonResponse
     {
-        return $this->shop->create($request->validate());
+        return response()->json([
+            'success' => true,
+            'data' => $this->repository->create($request->all()),
+        ]);
+    }
+
+    /**
+     * update
+     *
+     * @param ShopUpdateRequest $request
+     * @param integer $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(ShopUpdateRequest $request, $id): \Illuminate\Http\JsonResponse
+    {
+        return response()->json([
+            'success' => true,
+            'data' => $this->repository->modify($id, $request->all()),
+        ]);
     }
 
     /**
      * delete
      *
      * @param string $id
-     * @return bool
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(string $id): bool
+    public function destroy(string $id): \Illuminate\Http\JsonResponse
     {
-        return $this->shop->delete($id);
+        $deleted = $this->repository->delete($id);
+        return response()->json([
+            'success' => $deleted ? true : false,
+            'data' => $deleted ? true : false,
+        ]);
     }
 }

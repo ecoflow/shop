@@ -2,69 +2,97 @@
 
 namespace Ecoflow\Shop\Controllers\Category;
 
-use Ecoflow\Shop\Models\Category;
 use App\Http\Controllers\Controller;
+use Ecoflow\Shop\Requests\CategoryStoreRequest;
+use Ecoflow\Shop\Requests\CategoryUpdateRequest;
 use Ecoflow\Shop\Repositories\CategoryRepository;
 
 class CategoryController extends Controller
 {
     /**
-     * Category repository
+     * User repository
      *
-     * @var ShopRepository
+     * @var CategoryRepository
      */
-    protected CategoryRepository $category;
+    protected CategoryRepository $repository;
 
     /**
      * __construct
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(CategoryRepository $repository)
     {
-        $this->category = new CategoryRepository();
+        $this->repository = $repository;
     }
 
     /**
      * Return all records
      *
-     * @return void
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function index()
+    public function index(): \Illuminate\Http\JsonResponse
     {
-        return $this->category->all();
+        return response()->json([
+            'success' => true,
+            'data' => $this->repository->all(),
+        ]);
     }
 
     /**
      * Show a record
      *
-     * @param mixed $match
-     * @return Category
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function show($match): Category
+    public function show($id): \Illuminate\Http\JsonResponse
     {
-        return $this->category->find($match);
+        return response()->json([
+            'success' => true,
+            'data' => $this->repository->find($id),
+        ]);
     }
 
     /**
-     * create
+     * Store a record in db
      *
      * @param array $attributes
-     * @return Category
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function create(array $attributes): Category
+    public function store(CategoryStoreRequest $request): \Illuminate\Http\JsonResponse
     {
-        return $this->category->create($attributes);
+        return response()->json([
+            'success' => true,
+            'data' => $this->repository->create($request->all()),
+        ]);
     }
 
     /**
-     * delete
+     * Update a record
+     *
+     * @param CategoryUpdateRequest $request
+     * @param integer $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function update(CategoryUpdateRequest $request, $id): \Illuminate\Http\JsonResponse
+    {
+        return response()->json([
+            'success' => true,
+            'data' => $this->repository->modify($id, $request->all()),
+        ]);
+    }
+
+    /**
+     * Delete a record
      *
      * @param string $id
-     * @return bool
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function delete(string $id): bool
+    public function destroy(string $id): \Illuminate\Http\JsonResponse
     {
-        return $this->category->delete($id);
+        $deleted = $this->repository->delete($id);
+        return response()->json([
+            'success' => $deleted ? true : false,
+            'data' => $deleted ? true : false,
+        ]);
     }
 }
